@@ -21,6 +21,9 @@ test("should pick the correct date", async ({ page }) => {
 		// await page.getByLabel('pick time').click();
 		// await page.locator('.MuiClock-squareMask').click();
 		// await page.locator('.MuiClock-squareMask').click();
+
+    // .MuiDateTimePickerToolbar-timeDigitsContainer button
+    // .MuiClockNumber-root
 	}
 
 	// Solve seconds selection
