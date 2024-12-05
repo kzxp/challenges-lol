@@ -27,6 +27,7 @@ test("should pick the correct date", async ({ page }) => {
     const expectedMonth = dateObject.getMonth() + 1;
 
     while (true) {
+      // Loop to select the month until the current month is the expected month
       const currentMonth = await page
         .locator(".MuiPickersCalendarHeader-label")
         .textContent();
@@ -54,8 +55,11 @@ test("should pick the correct date", async ({ page }) => {
       .getByRole("gridcell", { name: `${dateObject.getDate()}`, exact: true })
       .click();
 
+    // Wait for animate transition
     await page.waitForTimeout(250);
 
+    // Couldn't click directly on the element, need to get x,y position of the element
+    // Then click on the browser with x,y position
     const hoursElement = await page.getByLabel(
       `${dateObject.getHours() === 0 ? "00" : dateObject.getHours()} hours`,
       { exact: true }
@@ -100,6 +104,9 @@ test("should pick the correct date", async ({ page }) => {
           break;
         }
 
+
+        // Calibrate the remaining minutes
+        // Eg. if minutes is 17, then calibrate the pointer 2 more minutes
         await page.locator(".MuiClockPointer-root").evaluate((element) => {
           const currentRotatation = Number(
             element.style.transform.replace(/\D+/g, "").trim()
@@ -108,7 +115,7 @@ test("should pick the correct date", async ({ page }) => {
           element.style.transform = `rotateZ(${currentRotatation + 1}deg)`;
         });
 
-        await page.waitForTimeout(125);
+        await page.waitForTimeout(25);
 
         const thumbElement = await page.locator(".MuiClockPointer-thumb");
         const thumbBoundingBox = await thumbElement.boundingBox();
