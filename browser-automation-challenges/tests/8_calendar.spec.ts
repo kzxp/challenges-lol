@@ -104,7 +104,6 @@ test("should pick the correct date", async ({ page }) => {
           break;
         }
 
-
         // Calibrate the remaining minutes
         // Eg. if minutes is 17, then calibrate the pointer 2 more minutes
         await page.locator(".MuiClockPointer-root").evaluate((element) => {
