@@ -1,32 +1,37 @@
 import test from "@playwright/test";
 
 test("should click checkboxes for all given numbers", async ({ page }) => {
-	await page.goto(
-		"https://showdownspace-rpa-challenge.vercel.app/challenge-hunting-fed83d58/"
-	);
+  await page.goto(
+    "https://showdownspace-rpa-challenge.vercel.app/challenge-hunting-fed83d58/"
+  );
 
-	await page.getByRole("button", { name: "Start challenge" }).click();
+  await page.getByRole("button", { name: "Start challenge" }).click();
 
-	const badges = await page.locator(".chakra-badge").all();
-	const givenNumbers = await Promise.all(
-		badges.map(async (badge) => await badge.innerText())
-	);
+  // Gather all given numbers
+  const badges = await page.locator(".chakra-badge").all();
+  const givenNumbers = await Promise.all(
+    badges.map(async (badge) => await badge.innerText())
+  );
 
-	const checkboxes = await page.locator("div > img").all();
+  const checkboxes = await page.locator("div > img").all();
 
-	for (const checkbox of checkboxes) {
-		if (!(await checkbox.isVisible())) {
-			break;
-		}
+  // Loop through all checkboxes
+  for (const checkbox of checkboxes) {
+    // Break if the checkbox is not visible
+    if (!(await checkbox.isVisible())) {
+      break;
+    }
 
-		await checkbox.hover();
+    // Hover on the checkbox
+    await checkbox.hover();
 
-		if (
-			givenNumbers.includes(
-				await page.locator(".chakra-portal ~ div").innerText()
-			)
-		) {
-			await checkbox.click();
-		}
-	}
+    // Click if the number is in the given numbers
+    if (
+      givenNumbers.includes(
+        await page.locator(".chakra-portal ~ div").innerText()
+      )
+    ) {
+      await checkbox.click();
+    }
+  }
 });
