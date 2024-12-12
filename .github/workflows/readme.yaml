@@ -59,7 +59,7 @@ jobs:
             fi
             
             # Add entry to JSON
-            echo "{\"name\":\"$name\",\"url\":\"$raw_url\"}" >> readme.json
+            echo "{\"name\":\"$name\",\"url\":\"$raw_url\",\"directory\":\"${dir:2}\"}" >> readme.json
           done
 
           # Close JSON array
