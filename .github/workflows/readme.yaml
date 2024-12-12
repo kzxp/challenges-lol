@@ -50,7 +50,7 @@ jobs:
             
             # Get the raw GitHub URL
             raw_url="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}${readme:1}"
-            
+            github_dir_url="https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/${dir:2}"
             # Add comma if not first entry
             if [ "$first" = true ]; then
               first=false
@@ -59,7 +59,7 @@ jobs:
             fi
             
             # Add entry to JSON
-            echo "{\"name\":\"$name\",\"url\":\"$raw_url\",\"directory\":\"${dir:2}\"}" >> readme.json
+            echo "{\"name\":\"$name\",\"url\":\"$raw_url\",\"directory\":\"$github_dir_url\"}" >> readme.json
           done
 
           # Close JSON array
