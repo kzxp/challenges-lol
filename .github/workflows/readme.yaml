@@ -36,40 +36,19 @@ jobs:
         id: generate-index
         run: |
           echo "Generating README index..."
-          # Find all README.md files in subdirectories
-          readmes=$(find . -mindepth 2 -name "README.md")
-
-          # Start JSON array
-          echo '[' > readme.json
-
-          # Process each README
-          first=true
-          for readme in $readmes; do
-            dir=$(dirname "$readme")
-            name=$(basename "$dir")
-            
-            # Get the raw GitHub URL
-            raw_url="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}${readme:1}"
-            github_dir_url="https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/${dir:2}"
-            # Add comma if not first entry
-            if [ "$first" = true ]; then
-              first=false
-            else
-              echo ',' >> readme.json
-            fi
-            
-            # Add entry to JSON
-            echo "{\"name\":\"$name\",\"url\":\"$raw_url\",\"directory\":\"$github_dir_url\"}" >> readme.json
-          done
-
-          # Close JSON array
-          echo ']' >> readme.json
-
-      - name: Create dist directory
-        run: mkdir -p dist
+          # Find all README.md files in subdirectories and convert to JSON array
+          find . -mindepth 2 -name "README.md" | jq -R -n -c '
+            [inputs | {
+              name: (. | split("/")[-2]),
+              readmeUrl: ("https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}" + (.[1:])),
+              directoryUrl: ("https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/" + (. | split("/")[1:-1] | join("/")))
+            }]
+          ' > readme.json
 
       - name: Move readme.json to dist
-        run: mv readme.json dist/
+        run: |
+          mkdir -p dist
+          mv readme.json dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
