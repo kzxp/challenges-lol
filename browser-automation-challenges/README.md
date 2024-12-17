@@ -4,7 +4,7 @@ Try to solve random challenges on the web browser.
 
 ## From this event
 
-- https://showdown.space/events/browser-automation-challenges
+[https://showdown.space/events/browser-automation-challenges](https://showdown.space/events/browser-automation-challenges)
 
 ## Tools
 
@@ -68,7 +68,7 @@ Try to solve random challenges on the web browser.
 - Select the correct date
 - Select the correct hour
 - Select the correct minute
-  - As in the UI, the minute increment by 5 minutes, if the minute is not divisible by 5
+  - As in the UI, the minute increment by 5 minutes, if the minute is mod by 5 and there is a remaining
   then we calibrate the remaining minutes by rotating the clock pin and recheck the minute display until the minute is correct.
 
 ![Preview](test-results-archive/8_calendar-should-pick-the-correct-date-chromium/trace.webp)
