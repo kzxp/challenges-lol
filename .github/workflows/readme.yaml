@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Generating README index..."
           # Find all README.md files in subdirectories and convert to JSON array
-          find . -mindepth 2 -name "README.md" | jq -R -n -c '
+          find . -mindepth 2 -name "README.md" -printf "%T@ %p\n" | sort -nr | cut -d' ' -f2- | jq -R -n -c '
             [inputs | {
               name: (. | split("/")[-2]),
               readmeUrl: ("https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}" + (.[1:])),
