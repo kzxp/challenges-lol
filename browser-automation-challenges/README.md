@@ -29,6 +29,16 @@ Try to solve random challenges on the web browser.
 
 ![Preview](test-results-archive/2_seven-should-click-on-the-segments-to-display-the-number-chromium/trace.webp)
 
+### 3. Blog
+
+I tried to solve this challenge but I couldn't get the correct answer.
+
+- Convert the given spreadsheet data to a CSV
+- Concurrently open the blog page and read the blog title and content
+- Compare the content length with the given spreadsheet data to get incorrect word count
+- Compare the title with the given spreadsheet data to get missing blog post
+- Compare the title with cached found title to get duplicate blog post
+
 ### 4. Robot
 
 - Navigate to the finish line with below logics
