@@ -11,12 +11,17 @@ So my life will be easier.
 
 ## Phase 1 - Bootstrap stuffs, MVP (WIP)
 
-I want to learn something new as full stack developer, easy to start, maintain and scale.
-Then I found supabase for backend which may good choice to store data.
-
 For frontend, I want to keep it simple as CSR, I would go for Vite + React + Tailwind CSS + shadcn/ui or Mantine.
 
 - [ ] Setup frontend
+- [ ] Setup scraper
+- [ ] Setup Github actions to trigger scraper every 12 hours
+- [ ] Store credit card promos data as json, separating active and expired promos
+
+## Phase 2 - Overengineered time
+
+I want to learn something new as full stack developer, easy to start, maintain and scale.
+Then I found supabase for backend which may good choice to store data.
+
 - [ ] Setup supabase
-- [ ] Setup playwright as scraper
-- [ ] Setup infrastructure, using AWS ???
+- [ ] Setup infrastructure, using AWS Lightsail to self-host supabase???
