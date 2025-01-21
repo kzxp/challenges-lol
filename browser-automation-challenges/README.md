@@ -11,6 +11,10 @@ Try to solve random challenges on the web browser.
 - Playwright
 - TypeScript
 
+## Test result trace files
+
+- [https://github.com/kzxp/browser-automation-challenges-trace-archive](https://github.com/kzxp/browser-automation-challenges-trace-archive)
+
 ## Solutions
 
 ### 1. Hunting the checkboxes
@@ -82,3 +86,6 @@ I tried to solve this challenge but I couldn't get the correct answer.
   then we calibrate the remaining minutes by rotating the clock pin and recheck the minute display until the minute is correct.
 
 ![Preview](test-results-archive/8_calendar-should-pick-the-correct-date-chromium/trace.webp)
+
+
+
